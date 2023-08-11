@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+:root {
+    --primary: #DD946f;
+    --primary-hover: #CD7D7C;
+    --secondary: #EFD0F8;
+    --secondary-hover: #B8A1D9;
+    --aura: #9265CA80;
+    --background: #261E5A;
+
+}
+
+
+.login_span {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.login_span:hover {
+    color: var(--primary-hover);
+}
+
+.login_span:active {
+    color: var(--secondary-hover);
+}
+
+.login_h1 {
+    color: var(--secondary)
+}
+
+.background {
+    content: "";
+    position:absolute;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+    background-image: url('../../../assets/img/bg.jpg');
+    /* opacity: 0.5; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.centering {
+    display: flex;
+    /* gap: .8rem; */
+    justify-content: center;
+    align-items: center;
+    width: clamp(280px, 100%,  130rem);
+    height: clamp(280px, 80%,  100rem);
+    padding-top: 5rem;
+}
+
+.my_form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: .8rem;
+    background-color: var(--background);
+    border: 1px solid var(--primary);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px var(--aura);
+    height: clamp(280px, 100%,  45rem);
+    width: clamp(20rem, 100%, 45rem);
+    padding: 32px;
+}
+
+.login_welcome {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.login_welcome_row {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.my_form_button {
+    background-color: var(--primary);
+    color: var(--background);
+    white-space: nowrap;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    line-height: 50px;
+    outline: none;
+    font-size: 18px;
+    letter-spacing: .025em;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 800;
+    min-height: 50px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.15);
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.login_input_text input {
+    color: var(--secondary);
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid var(--secondary);
+    height: 50px;
+    letter-spacing: .03rem;
+    background-color: transparent;
+    outline: none;
+    transition: .25s;
+    border-radius: 8px;
+    text-indent: 20px;
+    margin-top: 8px;
+}
+
+
+.my_form_button:hover {
+    background-color: var(--primary-hover);
+}
+
+.login_input_text {
+    position: relative;
+}
+
+.login_input_text input::-webkit-input-placeholder { /* Edge */
+    color: var(--secondary-hover);
+}
+
+.login_input_text img {
+    position: absolute;
+    right: -2px;
+    bottom: -4px;
+    width: 30px;
+    height: 30px;
+    transform: translate(-50%,-50%);
+    transform-origin: center;
+}
+
+.login_input_text input:focus {
+    border: 1px solid var(--primary);
+}
+
+.login_input_text label {
+    color: var(--secondary);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .03rem;
+    z-index: 10;
+}
+
+.input-icon {
+    position: absolute;
+    bottom: 0;
+    top: 55%;
+    right: 8px;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+}
+
+.my_form_actions {
+    display: flex;
+    flex-direction: column;
+    color: var(--secondary);
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.my_form_actions a {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.my_form_actions a:hover {
+    color: #a7a2cb;
+}
+
+.my_form_row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.my_form_signup {
+    display: flex;
+    justify-content: center;
+}
+
+.my_form_signup a {
+    color: var(--primary);
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.my_form_signup a:hover {
+    color: var(--primary-hover);
+}

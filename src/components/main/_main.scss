@@ -1,0 +1,47 @@
+.main {
+	margin: auto;
+	padding: 40px 80px;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 40px;
+}
+
+.main__filtros {
+	display: flex;
+	gap: 10px;
+}
+
+.main__titulo {
+	margin-bottom: 20px;
+}
+
+.main__grid {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(6, 1fr);
+}
+
+.main__media-titulo {
+	font-weight: 600;
+	text-align: center;
+}
+
+.main__media-fecha {
+	text-align: center;
+	font-size: 14px;
+}
+
+.main__media-img {
+	width: 100%;
+	vertical-align: top;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	/* background: /* Inserta aquí el valor del color */
+	min-height: 170px;
+}
+
+.main__paginacion {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}

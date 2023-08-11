@@ -1,0 +1,31 @@
+@import './reset.css';
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+ 
+
+ /* Text colors */
+ --color-text-pink:  hsl(349, 76%, 63%);
+ --color-text-gray:   hsl(60, 100%, 50%);
+
+ /* Background colors */
+ --color-background-main: linear-gradient(hsl(300, 100%, 10%), #000);
+
+ /* Colors for specific elements */
+ --color-background-footer:  rgba(50, 50, 50, 0.2) ;
+ --color-background-sidebar: rgb(0, 0, 0);
+ --swiper-navigation-size:  clamp(1.5rem, 3.1rem, 3.5rem);
+ --swiper-theme-color:#f9637e;
+
+ --background-button-shade-color: hsl(349, 45%, 48%);
+ --background-button-color: hsl(349, 76%, 63%);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background-color: #030303;
+}
