@@ -1,12 +1,13 @@
-import { Routing } from "./routers/Routing"
-
-
-
+import  Routing  from './routers/Routing'
+import { UserProvider } from './context/userContext';
 
 function App() {
+
   return (
     <>
-  <Routing/>
+    <UserProvider>
+      <Routing/>
+    </UserProvider>
     </>
   )
 }

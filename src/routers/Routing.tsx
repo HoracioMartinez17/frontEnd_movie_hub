@@ -1,27 +1,27 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
-import { PublicLayout } from '../components/publicLayout/PublicLayout'
-import { Login } from '../pages/publicPages/login/Login'
-import { Register } from '../pages/publicPages/register/Register'
-import { PrivateLayout } from '../components/privateLayout/PrivateLayout'
-import { HomePage } from '../pages/privatesPages/HomePage'
+import { Route, Routes } from "react-router-dom";
+import PublicRoutes from "../routes/PublicRoutes";
+import PrivateRoutes from "../routes/PrivateRoutes";
+import HomePage from "../pages/privatesPages/HomePage";
+import LoginPage from "../pages/publicPages/LoginPage";
+import { useAuth0 } from "@auth0/auth0-react";
 
+const Routing = () => {
+  const { isAuthenticated } = useAuth0();
  
- export const Routing = () => {
-   return (
-    <BrowserRouter>
+  
+  return (
     <Routes>
-      <Route path="/" element={<PublicLayout/>}>
-        <Route index element={<Login/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-      </Route>
-
-       <Route path="/" element={<PrivateLayout/>}>
-      <Route path='/private' element={<HomePage/>}/>
-        <Route path="/home" element={<HomePage/>}/>
-      </Route>
+      {isAuthenticated ? (
+        <Route path="/home" element={<PrivateRoutes />}>
+          <Route index element={<HomePage />} />
+        </Route>
+      ) : (
+        <Route path="/" element={<PublicRoutes />}>
+          <Route index element={<LoginPage />} />
+        </Route>
+      )}
     </Routes>
-    </BrowserRouter>
-   )
- }
- 
+  );
+};
+
+export default Routing;

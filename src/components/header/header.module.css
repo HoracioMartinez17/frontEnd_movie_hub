@@ -1,7 +1,7 @@
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding:  1rem ;
+    padding: 1rem;
 }
 
 .header {
@@ -10,8 +10,8 @@
     background-position: center center;
     background-repeat: no-repeat;
     min-height: 70vh;
-     display: flex;
-     align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .menu {
@@ -28,11 +28,11 @@
     /* border: 1px solid red; */
 }
 
- .navbar {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
+
 }
 
 .navbar ul {
@@ -49,14 +49,17 @@
 }
 
 .menu .navbar ul li a:hover {
-    color: hsla(0, 100%, 50%, 0.815); 
+    color: hsla(0, 100%, 50%, 0.815);
 }
+
 #menu {
     display: none;
 }
+
 .menu_icon {
     width: 2rem;
 }
+
 .menu label {
     cursor: pointer;
     display: none;
@@ -84,7 +87,7 @@
 
 .header1 img {
     width: 300px;
- }
+}
 
 .header1 a {
     color: #f2f0f0;
@@ -94,13 +97,14 @@
 
 
 .header1 a:hover {
-    color: yellow;;
+    color: yellow;
+    ;
 }
 
 
 
 .header2 {
-    width:50%;
+    width: 50%;
     margin-top: 5rem;
     text-align: end;
 
@@ -113,7 +117,8 @@
 }
 
 .header2 h1:hover {
-    color: yellow;;
+    color: yellow;
+    ;
 
 }
 
@@ -129,7 +134,9 @@
     color: #ffffff;
     font-weight: 600;
     font-size: 1.5rem;
+    cursor: pointer;
 }
+
 .btn2 {
     width: 110px;
     display: inline-block;
@@ -141,7 +148,7 @@
     margin-top: 2.3rem;
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
     .menu {
         padding: 1.8rem;
     }
@@ -149,6 +156,7 @@
     .menu label {
         display: initial;
     }
+
     .menu .navbar {
         position: absolute;
         top: 100%;
@@ -157,34 +165,28 @@
         background-color: #020202;
         display: none;
     }
-    .menu .navbar ul  {
-        flex-direction: column-reverse;
-     width: 100%;
-    }
-    .btn1 {
-        display: none;
+
+    .menu .navbar ul {
+        flex-direction: column;
+        width: 100%;
     }
 
     #menu:checked~.navbar {
         display: initial;
     }
 
-    .header_content{
+    .header_content {
         flex-direction: column;
         padding: 180px 30px 30px;
     }
+
     .header1 {
         width: 100%;
         align-items: center;
     }
+
     .header2 {
         width: 100%;
         text-align: center;
     }
 }
-
-
-
-
-
-

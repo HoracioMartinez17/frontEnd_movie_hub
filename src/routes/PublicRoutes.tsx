@@ -1,14 +1,11 @@
 import {Outlet} from 'react-router-dom'
 
-
-
-
-
-export const PublicLayout = () => {
+export const PublicRoutes = () => {
   return (
      <>
     <Outlet/>
-
     </>
   )
 }
+
+export default PublicRoutes

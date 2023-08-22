@@ -16,11 +16,11 @@
     font-size: 62.5%;
     line-height: 1.15;
   }
-  
+/*   
   img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
-  }
+  } */
   
   input, button, textarea, select {
     font: inherit;
