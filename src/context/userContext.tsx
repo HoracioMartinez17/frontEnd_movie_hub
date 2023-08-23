@@ -35,10 +35,10 @@ interface UserData {
     const fetchUserMoviesByGenres = async (genres: string[], getAccessTokenSilently: any, userId: string) => {
       try {
         // Obtener todas las películas por géneros y actualizar el estado
-        const allMovies = await fetchAllMoviesByGenres(genres, getAccessTokenSilently, userId);
+        const moviesByGenre = await fetchAllMoviesByGenres(genres, getAccessTokenSilently, userId);
         // ... Actualizar el estado de las películas en el contexto
-        console.log(allMovies)
-        setAllMovies(allMovies);
+        console.log(moviesByGenre)
+        setAllMovies(moviesByGenre);
       } catch (error) {
         console.error('Error fetching movies by genres:', error);
       }
