@@ -5,6 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useUserContext } from '../../context/userContext';
 
 
+
 export const Main = () => {
 	const { user, getAccessTokenSilently } = useAuth0();
 	const { userData,allMovies, fetchUserMoviesByGenres } = useUserContext();
@@ -27,7 +28,6 @@ export const Main = () => {
 				<div className={css.boxContainer_1}>
 				{allMovies['horror']?.map((movie) => (
                         <div key={movie.id} className={css.box1}>
-                            {/* Renderizar información de la película aquí */}
                             <Card movie={movie} />
                         </div>
                     ))}
@@ -41,7 +41,6 @@ export const Main = () => {
 				<div className={css.boxContainer_2}>
 				{allMovies['action']?.map((movie) => (
                         <div key={movie.id} className={css.box2}>
-                            {/* Renderizar información de la película aquí */}
                             <Card movie={movie} />
                         </div>
                     ))}

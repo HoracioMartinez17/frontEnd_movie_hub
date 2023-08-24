@@ -9,7 +9,8 @@
         "ignore": [
           "-webkit-text-size-adjust",
           "font-synthesis",
-          "width: fit-content"
+          "width: fit-content",
+          "accent-color"
         ]
       }
     ],

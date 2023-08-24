@@ -134,6 +134,9 @@
     color: #ffffff;
     font-weight: 600;
     font-size: 1.5rem;
+    border-radius: .2rem;
+    padding: 0.5rem 1rem;
+    border: none;
     cursor: pointer;
 }
 
@@ -146,7 +149,9 @@
     font-weight: 600;
     font-size: 1.5rem;
     margin-top: 2.3rem;
+
 }
+
 
 @media (max-width: 768px) {
     .menu {

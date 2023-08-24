@@ -1,0 +1,40 @@
+.button_addMovie {
+    border: none;
+    background-color: #2f9304;
+    border-radius: 0.9em;
+    padding: 0.5rem 1rem;
+    transition: all ease-in-out 0.2s;
+    font-size: 1.2rem;
+    cursor: pointer;
+   }
+   
+   .button_span_addMovie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+   }
+   
+   .button_addMovie:hover {
+    background-color:  #ff2F28;
+   }
+
+
+   /* Colores */
+.greenBackground {
+    background-color: #2f9304;
+  }
+  
+  .redBackground {
+    background-color: #ff2F28;
+  }
+  
+  /* Tamaños de texto */
+  .smallText {
+    font-size: 1rem;
+  }
+  
+  .largeText {
+    font-size: 1.5rem;
+  }
