@@ -1,5 +1,6 @@
 import { USER_URL } from "../global/serverUrl";
 import { GENRES_URL } from "../global/serverUrl";
+import { MOVIES_URL } from "../global/serverUrl";
 
 
 export const getUser = async (userId: string, getToken: any) => {
@@ -51,10 +52,22 @@ export const postApiUser= async (user:{}, getToken:any) => {
         console.error("There was a problem with the request:", error);
     }
 };
+interface Movie {
+  id: string;
+  title: string;
+  year: number;
+  language: string;
+  description: string;
+  image: string;
+}
+
+interface GenreMovies {
+  [genre: string]: Movie[];
+}
 
 
 export const fetchAllMoviesByGenres = async (genres: string[], getToken: any, userId: string) => {
-    const allMovies: Record<string, any[]> = {};
+    const allMovies: GenreMovies = {};
     
     try {
       for (const genre of genres) {
@@ -74,6 +87,30 @@ export const fetchAllMoviesByGenres = async (genres: string[], getToken: any, us
       return {};
     }
 };
+
+export const SavetMoviesUser = async(userId: string, getToken:any, newMovieData: {}) => {
+  try {
+    const token = await getToken();
+    const response = await fetch(`${MOVIES_URL}/${userId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(newMovieData) 
+    });
+    
+
+    
+    
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error('Error posting movie:', error);
+  }
+}
 
 
 

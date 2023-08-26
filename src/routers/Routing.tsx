@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import PublicRoutes from "../routes/PublicRoutes";
 import PrivateRoutes from "../routes/PrivateRoutes";
 import HomePage from "../pages/privatesPages/HomePage";
@@ -7,6 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Routing = () => {
   const { isAuthenticated } = useAuth0();
+  
  
   
   return (

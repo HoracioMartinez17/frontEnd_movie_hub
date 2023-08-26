@@ -10,8 +10,9 @@ interface Movie {
   description: string;
   image: string;
   userId: string;
-  genres: Genre[];
+  genres: Genre[]; 
 }
+
 
 interface Genre {
   id: string;
@@ -19,14 +20,16 @@ interface Genre {
   moviesId: string;
 }
 
+
 interface CardProps {
-  movie: Movie; 
+  movie: Partial<Movie>; // Usamos Partial para permitir que las propiedades sean opcionales
 }
+
 
 export const Card: React.FC<CardProps> = ({ movie }) => {
   return (
     <div className={css.card}>
-  <img className={css.card_img} src={imgPrueba} alt="card img" />
+  <img className={css.card_img} src={movie.image} alt="card img" />
   <div className={css.descriptions}>
     <h1>{movie.title}</h1>
     <p>{movie.description}</p>

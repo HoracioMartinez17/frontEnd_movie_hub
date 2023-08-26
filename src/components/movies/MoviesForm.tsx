@@ -1,48 +1,82 @@
+import { ChangeEvent } from 'react'
+import { useForm } from '../../hooks/useForm'
 import css from './moviesForm.module.css'
+import { useUserContext } from '../../context/userContext';
+
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 export const MoviesForm = () => {
+    const initialValues = {
+        title: '',
+        year: 0,
+        language: '',
+        description: '',
+        genre: '',
+        image: '',
+    };
+    const { userData, moviesSave } = useUserContext();
+    const { getAccessTokenSilently } = useAuth0();
+    const { form, handleChange } = useForm(initialValues)
+
+
+
+    const saveMovie = async (e: ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const newMovieData = form;
+        try {
+            moviesSave(newMovieData, getAccessTokenSilently, userData?.id ?? '');
+
+
+        } catch (error) {
+            console.error('Error saving movie:', error);
+        }
+    };
+
+
+
     return (
         <section className={css.container}>
             <header>Movie Add</header>
-            <form className={css.form} action="#">
+            <form className={css.form} onSubmit={saveMovie}>
                 <div className={css.input_box}>
                     <label>Title</label>
-                    <input required={true} placeholder="Enter full title" type="text" />
+                    <input name='title' required={true} placeholder="Enter full title" type="text" onChange={handleChange} />
                 </div>
                 <div className={css.column}>
                     <div className={css.input_box}>
                         <label>Language</label>
-                        <input required={true} placeholder="Enter movie language" type="text" />
+                        <input name='language' required={true}  placeholder="Enter movie language" type="text" onChange={handleChange} />
                     </div>
                     <div className={css.input_box}>
                         <label> Movie Year</label>
-                        <input required={true} placeholder="Enter movie year" type="number" min="1900" max="2023" />
+                        <input name='year' required={true}  placeholder="Enter movie year" type="number" min="1900" max="2023" onChange={handleChange} />
                     </div>
                 </div>
                 <div className={css.gender_box}>
                     <label>Gender</label>
                     <div className={css.gender_option}>
                         <div className={css.gender}>
-                            <input name="gender" id="check-action" type="radio" />
+                            <input name="genre" id="check-action" type="radio" value="64e6528e8c0d6c104567dc96" onChange={handleChange} />
                             <label htmlFor="check-action">Action</label>
                         </div>
                         <div className={css.gender}>
-                            <input name="gender" id="check-horror" type="radio" />
+                            <input name="genre" id="check-horror" type="radio" value="64e65b981c47fa8590a8fb1e" onChange={handleChange} />
                             <label htmlFor="check-horror">Horror</label>
                         </div>
                         <div className={css.gender}>
-                            <input name="gender" id="check-comedy" type="radio" />
+                            <input name="genre" id="check-comedy" type="radio" value="64e65b8f1c47fa8590a8fb1d" onChange={handleChange} />
                             <label htmlFor="check-comedy">Comedy</label>
                         </div>
                     </div>
-
                 </div>
                 <div className={`${css.input_box} ${css.address}`} >
                     <label>Description</label>
-                    <input required={true} placeholder="Enter movie description" type="text" />
-                        <label className={css.label_file} htmlFor="arquivo">Choose a file:</label>
-                        <input accept=".jpg, .jpeg, .png, .gif, .pdf" className={css.inpdddut} name="arquivo" id="arquivo" type="file"/>
-                    </div>
+                    <input name='description' required={true}  placeholder="Enter movie description" type="text" onChange={handleChange} />
+                    <label className={css.label_file} htmlFor="arquivo">Choose a file:</label>
+                    <input  value={form.image}  className={css.inpdddut} name="image" id="arquivo" type="text" onChange={handleChange} />
+                </div>
                 <button type="submit">Add movie</button>
             </form>
         </section>

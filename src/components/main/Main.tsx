@@ -8,15 +8,16 @@ import { useUserContext } from '../../context/userContext';
 
 export const Main = () => {
 	const { user, getAccessTokenSilently } = useAuth0();
-	const { userData,allMovies, fetchUserMoviesByGenres } = useUserContext();
-  
+	const { userData,allMovies, movies, fetchUserMoviesByGenres } = useUserContext();
+	const { horror, action, comedy } = allMovies?.allMovies || {};
+
 	useEffect(() => {
 	  if (userData && user) {
 		fetchUserMoviesByGenres(['horror', 'action', 'comedy'], getAccessTokenSilently, userData.id);
+
 	}
 
-	},[userData, user]);
-
+	},[userData, user, movies]);
 
 
 
@@ -26,7 +27,7 @@ export const Main = () => {
 				<h2 className={css.titleMovies}>Horror Movies</h2>
 				<hr className={css.hrMovies} />
 				<div className={css.boxContainer_1}>
-				{allMovies['horror']?.map((movie) => (
+				{horror?.map((movie) => (
                         <div key={movie.id} className={css.box1}>
                             <Card movie={movie} />
                         </div>
@@ -39,7 +40,7 @@ export const Main = () => {
 				<h2 className={css.titleMovies}>Action Movies</h2>
 				<hr className={css.hrMovies} />
 				<div className={css.boxContainer_2}>
-				{allMovies['action']?.map((movie) => (
+				{action?.map((movie) => (
                         <div key={movie.id} className={css.box2}>
                             <Card movie={movie} />
                         </div>
@@ -52,7 +53,7 @@ export const Main = () => {
 				<h2 className={css.titleMovies}> Comedy Movies</h2>
 				<hr className={css.hrMovies} />
 				<div className={css.boxContainer_3}>
-				{allMovies['comedy']?.map((movie) => (
+				{comedy?.map((movie) => (
                         <div key={movie.id} className={css.box3}>
                             <Card movie={movie} />
                         </div>
