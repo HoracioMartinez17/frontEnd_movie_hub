@@ -46,7 +46,6 @@ export const postApiUser= async (user:{}, getToken:any) => {
             throw new Error("Network response was not ok.");
         }
         const data = await response.json()
-        console.log (data)
         return data
     } catch (error) {
         console.error("There was a problem with the request:", error);
@@ -68,7 +67,6 @@ interface GenreMovies {
 
 export const fetchAllMoviesByGenres = async (genres: string[], getToken: any, userId: string) => {
     const allMovies: GenreMovies = {};
-    
     try {
       for (const genre of genres) {
         const token = await getToken();
@@ -78,9 +76,8 @@ export const fetchAllMoviesByGenres = async (genres: string[], getToken: any, us
         } });
         const data = await response.json();
         allMovies[genre] = data.movies;
-        console.log(allMovies)
+
       }
-  
       return allMovies;
     } catch (error) {
       console.error('Error fetching movies by genres:', error);
@@ -88,7 +85,7 @@ export const fetchAllMoviesByGenres = async (genres: string[], getToken: any, us
     }
 };
 
-export const SavetMoviesUser = async(userId: string, getToken:any, newMovieData: {}) => {
+export const savetMoviesUser = async(userId: string, getToken:any, newMovieData: {}) => {
   try {
     const token = await getToken();
     const response = await fetch(`${MOVIES_URL}/${userId}`, {
@@ -97,15 +94,46 @@ export const SavetMoviesUser = async(userId: string, getToken:any, newMovieData:
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify(newMovieData) 
+      body: JSON.stringify(newMovieData)
     });
-    
-
-    
-    
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error('Error posting movie:', error);
+  }
+}
+export const updateMoviesUser = async(movieId: string, getToken:any, updateMovieData: {}) => {
+  try {
+    const token = await getToken();
+    const response = await fetch(`${MOVIES_URL}/${movieId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(updateMovieData)
+    });
 
     const data = await response.json();
     console.log(data);
+    return data;
+  } catch (error) {
+    console.error('Error posting movie:', error);
+  }
+}
+export const deleteMoviesUser = async(movieId: string, getToken:any) => {
+  try {
+    const token = await getToken();
+    const response = await fetch(`${MOVIES_URL}/${movieId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await response.json();
     return data;
   } catch (error) {
     console.error('Error posting movie:', error);

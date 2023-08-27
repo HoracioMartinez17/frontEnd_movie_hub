@@ -4,9 +4,12 @@ import css from './moviesForm.module.css'
 import { useUserContext } from '../../context/userContext';
 
 import { useAuth0 } from '@auth0/auth0-react';
+interface MoviesFormEditProps {
+    movieId: string;
+  }
 
 
-export const MoviesForm = () => {
+  export const MoviesFormEdit: React.FC<MoviesFormEditProps> = ({ movieId }) => {
     const initialValues = {
         title: '',
         year: 0,
@@ -15,32 +18,32 @@ export const MoviesForm = () => {
         genre: '',
         image: '',
     };
-    const { userData, moviesSave } = useUserContext();
+    const {  moviesUpdate} = useUserContext();
     const { getAccessTokenSilently } = useAuth0();
     const { form, handleChange } = useForm(initialValues)
-    
 
 
 
-    const saveMovie = async (e: ChangeEvent<HTMLFormElement>) => {
+    const updateMovie = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const newMovieData = form;
+        const updateMovieData = form;
+
         try {
-            moviesSave(newMovieData, getAccessTokenSilently, userData?.id ?? '');
 
 
+          // Llama a la función para actualizar la película en la base de datos
+          moviesUpdate(movieId, getAccessTokenSilently, updateMovieData);
         } catch (error) {
-            console.error('Error saving movie:', error);
+          console.error('Error saving movie:', error);
         }
-    };
-
+      };
 
 
     return (
         <section className={css.container}>
             <header>Movie Add</header>
-            <form className={css.form} onSubmit={saveMovie}>
+            <form className={css.form} onSubmit={updateMovie}>
                 <div className={css.input_box}>
                     <label>Title</label>
                     <input name='title' required={true} placeholder="Enter full title" type="text" onChange={handleChange} />

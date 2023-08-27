@@ -1,11 +1,12 @@
 import { createContext, useContext, useState, ReactNode, FC } from 'react';
-import {postApiUser,fetchAllMoviesByGenres,SavetMoviesUser} from '../api/user.request.fetch'
+import {postApiUser,fetchAllMoviesByGenres,savetMoviesUser,updateMoviesUser,deleteMoviesUser} from '../api/user.request.fetch'
 import { User } from '@auth0/auth0-react';
 
 interface UserData {
     id: string;
     name: string;
     email: string;
+    movies: Movie[];
   }
 
   interface Movie {
@@ -33,9 +34,14 @@ interface UserData {
     userData: UserData | null
     allMovies: allMoviesByGenres |null
     movies: MovieCreated[] | null
+    movieUpdate: MovieCreated[] | null
+    moviesDelete:string | null
     userFechture: (user: User | undefined, getAccessTokenSilently: any) => void;
     fetchUserMoviesByGenres: (genres: string[], getAccessTokenSilently: any, userId: string) => void;
     moviesSave: (movies: MovieCreated, getAccessTokenSilently: any, userId: string) => void;
+    moviesUpdate:(movieId:string,getAccessTokenSilently: any,movieUpdate:MovieCreated) => void
+    movieDelete:(movieId:string,getAccessTokenSilently: any) => void
+   
   }
 
 
@@ -47,6 +53,8 @@ interface UserData {
     const [userData, setUserData] = useState<UserData | null>(null);
     const [allMovies, setAllMovies] = useState<allMoviesByGenres | null>(null);
     const [movies, setNewMovies] = useState<Movie[] | null>(null);
+    const [movieUpdate, setMovieUpdate] = useState<Movie[] | null>(null);
+    const [moviesDelete, setMovieDelete] = useState< null>(null);
 
 
 
@@ -62,7 +70,6 @@ interface UserData {
         // Obtener todas las películas por géneros y actualizar el estado
         const moviesByGenre = await fetchAllMoviesByGenres(genres, getAccessTokenSilently, userId);
         // ... Actualizar el estado de las películas en el contexto
-        console.log(moviesByGenre)
         setAllMovies({ allMovies: moviesByGenre });
       } catch (error) {
         console.error('Error fetching movies by genres:', error);
@@ -72,10 +79,31 @@ interface UserData {
     const moviesSave = async (newMovieData: {}, getAccessTokenSilently: any, userId: string) => {
       try {
           //enviar la movie creada del user a la base de datos
-          const newMovieCreated = await SavetMoviesUser(userId, getAccessTokenSilently, newMovieData);
-  
+          const newMovieCreated = await savetMoviesUser(userId, getAccessTokenSilently, newMovieData);
           // ... Actualizar el estado de las películas en el contexto
           setNewMovies(newMovieCreated);
+      } catch (error) {
+          console.error('Error saving movie:', error);
+      }
+  }
+    const moviesUpdate = async (movieId: string,getAccessTokenSilently: any,updateMovieData: {}) => {
+      try {
+          //enviar la movie creada del user a la base de datos
+          const newMovieUpdate = await updateMoviesUser(movieId, getAccessTokenSilently, updateMovieData);
+  
+          // ... Actualizar el estado de las películas en el contexto
+          setMovieUpdate(newMovieUpdate);
+      } catch (error) {
+          console.error('Error saving movie:', error);
+      }
+  }
+    const movieDelete = async (movieId: string,getAccessTokenSilently: any) => {
+      try {
+          //eliminar la movie creada del user a la base de datos
+          const moviesDelete = await deleteMoviesUser(movieId, getAccessTokenSilently);
+  
+          // ... Actualizar el estado de las películas en el contexto
+          setMovieDelete(moviesDelete);
       } catch (error) {
           console.error('Error saving movie:', error);
       }
@@ -83,7 +111,8 @@ interface UserData {
   
 
     return (
-      <UserContext.Provider value={{ allMovies, userData,movies, userFechture, fetchUserMoviesByGenres, moviesSave }}>
+      <UserContext.Provider value={{ allMovies, userData,movies,movieUpdate,moviesDelete, userFechture,
+       fetchUserMoviesByGenres, moviesSave,moviesUpdate,movieDelete }}>
         {children}
       </UserContext.Provider>
     );

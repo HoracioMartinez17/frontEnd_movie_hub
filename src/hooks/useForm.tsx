@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from "react";
 
 interface MovieCreated {
+  id?: string;
   title: string;
   year: number;
   genre:string;

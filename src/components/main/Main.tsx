@@ -8,7 +8,7 @@ import { useUserContext } from '../../context/userContext';
 
 export const Main = () => {
 	const { user, getAccessTokenSilently } = useAuth0();
-	const { userData,allMovies, movies, fetchUserMoviesByGenres } = useUserContext();
+	const { userData,allMovies, movies,movieUpdate,moviesDelete, fetchUserMoviesByGenres } = useUserContext();
 	const { horror, action, comedy } = allMovies?.allMovies || {};
 
 	useEffect(() => {
@@ -17,7 +17,7 @@ export const Main = () => {
 
 	}
 
-	},[userData, user, movies]);
+	},[userData, user, movies,movieUpdate,moviesDelete]);
 
 
 

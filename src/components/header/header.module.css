@@ -152,6 +152,14 @@
 
 }
 
+.button_span_addMovie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+   }
+
 
 @media (max-width: 768px) {
     .menu {
