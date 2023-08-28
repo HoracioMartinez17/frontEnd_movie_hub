@@ -3,7 +3,7 @@
     z-index: 999;
     top: 0;
     left: 0;
-    width: 100%;
+    width: clamp(220px,100%, 100%);
     min-height: 100vh;
     background-color: rgb(0, 0, 0, 0.75);
     display: flex;
@@ -16,8 +16,7 @@
 .modal_container {
     position: relative;
     padding: 1rem;
-    min-width: 320px;
-    min-width: 450px;
+    width: clamp(220px,100rem, 450px);
     min-height: 200px;
     max-height: 500px;
     overflow-y: auto;

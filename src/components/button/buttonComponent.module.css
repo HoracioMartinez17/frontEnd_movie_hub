@@ -18,7 +18,7 @@
 }
 
 .button_hover_green:hover {
-  background-color: #18a000;
+  background-color: #085808;
   color: rgb(255, 235, 205);
 }
 
@@ -31,7 +31,7 @@
 
 /* Colores */
 .greenBackground {
-  background-color: #2f9304;
+  background-color: transparent;
 }
 
 .redBackground {

@@ -13,20 +13,32 @@
   } */
   
   .modal_container {
-    background-color: white;
+    background: var(--color-background-main);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
 
   }
 
   .modal_content {
     text-align: center;
   }
+  .modal_content h2{
+    padding: 12px 0;
+    font-size: 2rem;
+    color: #f5f4e8;
+    font-weight: 600;
+    
+  }
+  .modal_content p{
+    padding-bottom: 5px;
+    font-size: 1.4rem;
+    color: #dafcc4;
+    font-weight: 600;
+    
+  }
 
   /* Estilos de los botones */
   .button_container {
-    margin-top: 20px;
+    padding: 15px 0;
     display: flex;
     justify-content: space-around;
   }
@@ -43,7 +55,8 @@
   
   .confirm_button {
     background-color: #e74c3c;
-    color: white;
+    color:  #f5f4e8;
+    font-size: 1.2rem;
   }
   
   .confirm_button:hover {
@@ -51,11 +64,12 @@
   }
   
   .cancel_button {
-    background-color: #3498db;
-    color: white;
+    background-color:  #2f9304;
+    color: #f5f4e8;
+    font-size: 1.2rem;
   }
   
   .cancel_button:hover {
-    background-color: #2980b9;
+    background-color: #077107;
   }
   

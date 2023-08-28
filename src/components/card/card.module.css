@@ -43,14 +43,35 @@
   transform: scale(1.6) rotate(20deg);
   filter: blur(3px);
 }
-.card h1{
+.card h2{
   color: #ff3838;
   letter-spacing: 1px;
-  margin: 0px;
+  text-align: center;
+  font-size: 2rem;
+  padding-bottom: 1rem;
 }
-.card p{
-  line-height: 24px;
-  font-size: 1rem;
+
+.description_parrafo{
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  font-weight: 600;
+  color: #383434;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  overflow-y: auto;
+}
+.description_parrafo_date{
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  font-weight: 700;
+  color:  #ff3838;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.description_span_date{
+  color:#383434;
+  font-weight: 500;
 }
 /* .card button{
   width: fit-content;
@@ -72,6 +93,7 @@
 .button_divCard{
   position: absolute;
   top: 12rem;
+  right: 1.3rem;
   display: flex;
   align-items: flex-end;
   gap: 1rem;

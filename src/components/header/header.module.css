@@ -12,6 +12,7 @@
     min-height: 70vh;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .menu {
@@ -23,34 +24,55 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    /* padding: 1rem; */
-    /* margin: 1rem; */
-    /* border: 1px solid red; */
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .navbar ul {
     display: flex;
+    align-items: center;
     gap: 2rem;
 }
 
-.menu .navbar ul li a {
-    display: block;
-    color: var(--color-text-gray);
-    font-size: 2rem;
+.menu .navItem {
+    position: relative;
+    font-size: 1.2rem;
     padding: 1.2rem;
     font-weight: 700;
+    cursor: pointer;
 }
 
-.menu .navbar ul li a:hover {
+
+.navItem .navItem_span {
+    color: var(--color-text-gray);
+    font-size: 2rem;
+    font-weight: 700;
+    transition: color 0.3s ease-in-out;
+}
+
+.navItem .navItem_span:hover {
     color: hsla(0, 100%, 50%, 0.815);
 }
+
+.ul_second {
+    position: absolute;
+    left: 3rem;
+    opacity: 0; /* Empieza con opacidad 0 para la transición */
+    transform: translateY(-10px); /* Empieza un poco arriba para la transición */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones suaves en el menú desplegable */
+}
+
+.ul_second.visible {
+    opacity: 1; /* Cambia la opacidad a 1 cuando es visible */
+    transform: translateY(0); /* Vuelve a la posición original cuando es visible */
+}
+
+
+
 
 #menu {
     display: none;
@@ -158,7 +180,7 @@
     align-items: center;
     color: #fff;
     font-weight: 600;
-   }
+}
 
 
 @media (max-width: 768px) {

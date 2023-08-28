@@ -39,7 +39,7 @@ export const MoviesForm = () => {
 
     return (
         <section className={css.container}>
-            <header>Movie Add</header>
+            <header className={css.header_form}>Movie Add</header>
             <form className={css.form} onSubmit={saveMovie}>
                 <div className={css.input_box}>
                     <label>Title</label>

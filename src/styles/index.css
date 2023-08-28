@@ -9,8 +9,7 @@
  --color-text-gray:   hsl(60, 100%, 50%);
 
  /* Background colors */
- --color-background-main: linear-gradient(hsl(300, 100%, 10%), #000);
-
+ --color-background-main: radial-gradient(circle at 10.6% 22.1%, rgb(206, 18, 18) 0%, rgb(122, 21, 21) 100.7%);
  /* Colors for specific elements */
  --color-background-footer:  rgba(50, 50, 50, 0.2) ;
  --color-background-sidebar: rgb(0, 0, 0);

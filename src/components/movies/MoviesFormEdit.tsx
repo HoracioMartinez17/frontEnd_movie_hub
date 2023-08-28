@@ -42,7 +42,7 @@ interface MoviesFormEditProps {
 
     return (
         <section className={css.container}>
-            <header>Movie Add</header>
+            <header>Edit Movie</header>
             <form className={css.form} onSubmit={updateMovie}>
                 <div className={css.input_box}>
                     <label>Title</label>
@@ -81,7 +81,7 @@ interface MoviesFormEditProps {
                     <label className={css.label_file} htmlFor="arquivo">Choose a file:</label>
                     <input  value={form.image}  className={css.inpdddut} name="image" id="arquivo" type="text" onChange={handleChange} />
                 </div>
-                <button type="submit">Add movie</button>
+                <button type="submit">Edit Movie</button>
             </form>
         </section>
     )

@@ -3,17 +3,27 @@ import { Link } from 'react-router-dom'
 import venom from '../../assets/img/venom.png'
 // import play from '../../assets/img/play.png'
 import menu from '../../assets/img/menu.png'
-import { useAuth0 } from '@auth0/auth0-react'
+
 import Modal from '../modal/Modal'
 import { MoviesForm } from '../movies/MoviesForm'
 import { useModal } from '../../hooks/useModal';
 import ButtonComponent from '../button/ButtonComponent'
+import {DropdownMenu} from '../dropdownMenu/DropdownMenu'
+import { useState } from 'react'
 
 
 export const Header = () => {
-  const { logout } = useAuth0()
   const [isOpenModal1, openModal1, closeModal1] = useModal(false)
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
+
+  const handleProfileHover = () => {
+    setIsDropdownVisible(true);
+  };
+
+  const handleProfileLeave = () => {
+    setIsDropdownVisible(false);
+  };
   return (
     <>
       <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
@@ -29,7 +39,7 @@ export const Header = () => {
           <nav className={`${css.navbar} ${css.container}`}>
             <ul className={css.navList}>
               <li className={css.navItem}>
-                <ButtonComponent onClick={openModal1}button_hover="button_hover_red" backgroundColor="greenBackground"
+                <ButtonComponent onClick={openModal1}button_hover="button_hover_green" backgroundColor="greenBackground"
                   textSize="largeText" className={css.buttonClasses}>
                   <span className={css.button_span_addMovie}>
                 <svg
@@ -48,16 +58,22 @@ export const Header = () => {
             </span>
                 </ButtonComponent>
               </li>
-              <li className={css.navItem}><Link to='/about'>About</Link></li>
-              <li className={css.navItem}><Link to='/contact'>Contact</Link></li>
-              <li className={css.navItem}><button className={css.btn1} onClick={(): Promise<void> => logout()} >log out</button></li>
+              <li
+        className={css.navItem}
+        onMouseEnter={handleProfileHover} // Mostrar el menú cuando se hace hover
+        onMouseLeave={handleProfileLeave} // Ocultar el menú cuando se deja de hacer hover
+      >
+       <span className={css.navItem_span}>Profile</span>
+       <ul className={`${css.ul_second} ${isDropdownVisible ? css.visible : ''}`}>
+        {isDropdownVisible && <DropdownMenu isDropdownVisible={isDropdownVisible} />}
+        </ul>
+      </li>
             </ul>
           </nav>
         </div>
         <div className={`${css.header_content} ${css.container}`}>
           <div className={css.header1}>
             <img src={venom} alt="logo" />
-            <Link className={css.btn2} to='/' >watch now</Link>
           </div>
           <div className={css.header2}>
             <h1>The best <hr /> Movies </h1>
