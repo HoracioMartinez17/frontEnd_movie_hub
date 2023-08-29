@@ -8,10 +8,6 @@
   width: fit-content;
 }
 
-/* .button_addMovie:hover {
-  background-color: #ff2F28;
-  color: rgb(255, 235, 205);
-} */
 .button_hover_red:hover {
   background-color: #ff2f28;
   color: rgb(255, 235, 205);
@@ -31,6 +27,9 @@
 
 /* Colores */
 .greenBackground {
+  background-color: #2f9304;
+}
+.transparentBackground {
   background-color: transparent;
 }
 
@@ -57,3 +56,4 @@
 .largeText {
   font-size: 1.2rem;
 }
+

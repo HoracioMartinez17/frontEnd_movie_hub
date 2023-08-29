@@ -9,7 +9,7 @@
  --color-text-gray:   hsl(60, 100%, 50%);
 
  /* Background colors */
- --color-background-main: radial-gradient(circle at 10.6% 22.1%, rgb(206, 18, 18) 0%, rgb(122, 21, 21) 100.7%);
+ --color-background-main: radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%);
  /* Colors for specific elements */
  --color-background-footer:  rgba(50, 50, 50, 0.2) ;
  --color-background-sidebar: rgb(0, 0, 0);

@@ -7,9 +7,9 @@ import menu from '../../assets/img/menu.png'
 import Modal from '../modal/Modal'
 import { MoviesForm } from '../movies/MoviesForm'
 import { useModal } from '../../hooks/useModal';
-import ButtonComponent from '../button/ButtonComponent'
-import {DropdownMenu} from '../dropdownMenu/DropdownMenu'
+import { DropdownMenu } from '../dropdownMenu/DropdownMenu'
 import { useState } from 'react'
+import { ButtonSpecial } from '../button/buttonSpecial/ButtonSpecial'
 
 
 export const Header = () => {
@@ -39,35 +39,34 @@ export const Header = () => {
           <nav className={`${css.navbar} ${css.container}`}>
             <ul className={css.navList}>
               <li className={css.navItem}>
-                <ButtonComponent onClick={openModal1}button_hover="button_hover_green" backgroundColor="greenBackground"
-                  textSize="largeText" className={css.buttonClasses}>
-                  <span className={css.button_span_addMovie}>
-                <svg
+                <ButtonSpecial onClick={openModal1}>
+                  <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                >
+                    width="30"
+                    height="30"
+                  >
                     <path fill="none" d="M0 0h24v24H0z"></path>
                     <path
-                        fill="currentColor"
-                        d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"
+                      fill="currentColor"
+                      d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"
                     ></path>
-                </svg>
-                add movie
-            </span>
-                </ButtonComponent>
+                  </svg>
+                  add movies
+                </ButtonSpecial>
               </li>
               <li
-        className={css.navItem}
-        onMouseEnter={handleProfileHover} // Mostrar el menú cuando se hace hover
-        onMouseLeave={handleProfileLeave} // Ocultar el menú cuando se deja de hacer hover
-      >
-       <span className={css.navItem_span}>Profile</span>
-       <ul className={`${css.ul_second} ${isDropdownVisible ? css.visible : ''}`}>
-        {isDropdownVisible && <DropdownMenu isDropdownVisible={isDropdownVisible} />}
-        </ul>
-      </li>
+                className={css.navItem}
+                onMouseEnter={handleProfileHover} // Mostrar el menú cuando se hace hover
+                onMouseLeave={handleProfileLeave} // Ocultar el menú cuando se deja de hacer hover
+              >
+                <span className={css.navItem_span}><svg className={css.svg_profile} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                </svg>Profile</span>
+                <ul className={`${css.ul_second} ${isDropdownVisible ? css.visible : ''}`}>
+                  {isDropdownVisible && <DropdownMenu isDropdownVisible={isDropdownVisible} />}
+                </ul>
+              </li>
             </ul>
           </nav>
         </div>

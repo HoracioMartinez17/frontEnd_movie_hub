@@ -41,34 +41,54 @@
 .menu .navItem {
     position: relative;
     font-size: 1.2rem;
-    padding: 1.2rem;
-    font-weight: 700;
+    padding: 1.3rem;
     cursor: pointer;
 }
 
 
 .navItem .navItem_span {
-    color: var(--color-text-gray);
-    font-size: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #f5f4e8;
+    --animation-color: #ffffff;
+    font-size: 2.5rem;
     font-weight: 700;
     transition: color 0.3s ease-in-out;
 }
 
 .navItem .navItem_span:hover {
-    color: hsla(0, 100%, 50%, 0.815);
+    color: hsl(0, 0%, 100%);
+    -webkit-filter: drop-shadow(0 0 23px var(--animation-color));
+    filter: drop-shadow(0 0 23px var(--animation-color))
 }
+
+/* Estilos CSS externos */
+.svg_profile {
+    width: 24px;
+    /* Aumenta el ancho */
+    height: 24px;
+    /* Aumenta la altura */
+}
+
+
 
 .ul_second {
     position: absolute;
     left: 3rem;
-    opacity: 0; /* Empieza con opacidad 0 para la transición */
-    transform: translateY(-10px); /* Empieza un poco arriba para la transición */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones suaves en el menú desplegable */
+    opacity: 0;
+    /* Empieza con opacidad 0 para la transición */
+    transform: translateY(-10px);
+    /* Empieza un poco arriba para la transición */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    /* Transiciones suaves en el menú desplegable */
 }
 
 .ul_second.visible {
-    opacity: 1; /* Cambia la opacidad a 1 cuando es visible */
-    transform: translateY(0); /* Vuelve a la posición original cuando es visible */
+    opacity: 1;
+    /* Cambia la opacidad a 1 cuando es visible */
+    transform: translateY(0);
+    /* Vuelve a la posición original cuando es visible */
 }
 
 
@@ -111,17 +131,7 @@
     width: 300px;
 }
 
-.header1 a {
-    color: #f2f0f0;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
 
-
-.header1 a:hover {
-    color: yellow;
-    ;
-}
 
 
 
@@ -202,7 +212,7 @@
     }
 
     .menu .navbar ul {
-        flex-direction: column;
+        flex-direction: column-reverse;
         width: 100%;
     }
 

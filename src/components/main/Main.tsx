@@ -17,7 +17,7 @@ export const Main = () => {
 
 	}
 
-	},[userData, user, movies,movieUpdate,moviesDelete]);
+	},[userData, movies,movieUpdate,moviesDelete]);
 
 
 

@@ -21,13 +21,14 @@
 
 .form .input_box {
   width: 100%;
-  margin-top: 10px;
+  padding-top: 0.1rem;
 }
 
 .input_box label {
   color: #f5f4e8;
   font-size: 1.2rem;
   font-weight: 700;
+  padding-top: 0.3rem;
 }
 
 .form :where(.input_box input, .select_box) {
@@ -54,7 +55,7 @@
 }
 
 .form .gender_box {
-  margin-top: 10px;
+  margin-top: 0.3rem;
   color: #f5f4e8;
   font-size: 1.2rem;
   font-weight: 700;
@@ -65,7 +66,21 @@
   align-items: center;
   column-gap: 50px;
   flex-wrap: wrap;
-  margin-top: 3px;
+  margin-top:  0.3rem;
+}
+
+.description {
+  margin-top:  0.4rem;
+}
+
+.error_input {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  width: 14rem;
+  padding: 0.5rem 0 0 0 ;
+  display: flex;
+  align-items: center;
+  color: #EF665B;
 }
 
 .form .gender {
@@ -73,16 +88,13 @@
 }
 
 .gender input {
-  accent-color: #100807;
+  accent-color: #EE4E34;
 }
 
 .form :where(.gender input, .gender label) {
   cursor: pointer;
 }
 
-.address :where(input, .select_box) {
-  margin-top: 10px;
-}
 
 .select_box select {
   height: 100%;
@@ -114,7 +126,7 @@
 }
 
 .label_file {
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   font-weight: bold;
   display: block;
   cursor: pointer;
