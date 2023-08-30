@@ -4,26 +4,24 @@ import { Header } from "../components/header/Header";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const PrivateRoutes = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
-
-  if (!isAuthenticated) {
-    // Si no está autenticado, redirigir a la página de inicio de sesión
-    console.log(isAuthenticated)
-    return <Navigate to="/" />;
+  if (isLoading) {
+    return <div>Loading ...</div>;
   }
 
- 
-
   return (
-     
- 
-          <>
+    <>
+      {isAuthenticated ? (
+        <>
           <Header />
           <Outlet />
           <Footer />
-          </>
-
+        </>
+      ) : (
+        <Navigate to="/login" />
+      )}
+    </>
   );
 };
 

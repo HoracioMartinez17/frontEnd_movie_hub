@@ -95,7 +95,7 @@ export const MoviesForm = () => {
                     {errors.genre && <span className={css.error_input}>Genre is required</span>}
                 </div>
 
-                <div className={`${css.input_box} ${css.address}`} >
+                <div className={`${css.input_box} ${css.description}`} >
                     <label htmlFor='description'>Description</label>
                     <input {...register("description", {
                         required: {

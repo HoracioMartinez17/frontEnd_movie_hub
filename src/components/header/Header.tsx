@@ -10,10 +10,15 @@ import { useModal } from '../../hooks/useModal';
 import { DropdownMenu } from '../dropdownMenu/DropdownMenu'
 import { useState } from 'react'
 import { ButtonSpecial } from '../button/buttonSpecial/ButtonSpecial'
+import { UserForms } from '../useForms/UserForms'
+import { UserFormDelete } from '../useForms/UserFormDelete'
+
 
 
 export const Header = () => {
   const [isOpenModal1, openModal1, closeModal1] = useModal(false)
+  const [isOpenModal3, openModal3, closeModal3] = useModal(false)
+  const [isOpenModal4, openModal4, closeModal4] = useModal(false)
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
 
@@ -28,6 +33,12 @@ export const Header = () => {
     <>
       <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
         <MoviesForm />
+      </Modal>
+      <Modal isOpen={isOpenModal3} closeModal={closeModal3}>
+        <UserForms />
+      </Modal>
+      <Modal isOpen={isOpenModal4} closeModal={closeModal4}>
+        <UserFormDelete onClose={closeModal4} />
       </Modal>
       <header className={css.header}>
         <div className={`${css.menu} ${css.container}`}>
@@ -64,7 +75,8 @@ export const Header = () => {
                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                 </svg>Profile</span>
                 <ul className={`${css.ul_second} ${isDropdownVisible ? css.visible : ''}`}>
-                  {isDropdownVisible && <DropdownMenu isDropdownVisible={isDropdownVisible} />}
+                  {isDropdownVisible && <DropdownMenu isDropdownVisible={isDropdownVisible}
+                   openModal3={openModal3}  openModal4={openModal4} />}
                 </ul>
               </li>
             </ul>
