@@ -3,6 +3,7 @@ import css from './userForms.module.css'
 import { useUserContext } from '../../context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 interface userUpdate {
     name: string;
     email: string;
@@ -19,14 +20,14 @@ export const UserForms = () => {
     });
     const { register, handleSubmit, formState:{errors} } = form;
 
-    const onSubmit = (userUpdate: userUpdate) => {
-        try {
-            updateUsersData(userData?.id ?? '', getAccessTokenSilently, userUpdate)
 
-        } catch (error) {
-            console.log(error);
-        }
+    const onSubmit = async (userUpdate: userUpdate) => {
+      try {
+         updateUsersData(userData?.id ?? '', getAccessTokenSilently, userUpdate);
 
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     return (

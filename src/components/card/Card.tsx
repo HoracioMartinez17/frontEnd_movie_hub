@@ -7,51 +7,45 @@ import Modal from '../modal/Modal';
 import { MoviesFormEdit } from '../movies/MoviesFormEdit';
 import { ModalConfirmation } from '../movies/ModalConfirmation';
 
-interface Movie {
+interface MovieCar {
   id: string;
   title: string;
   year: number;
   language: string;
   description: string;
-  image: string;
-  userId: string;
-  genres: Genre[];
+ image: {
+  public_id?: string | undefined;
+  secure_url: string;
+ }
+
 }
 
 
-interface Genre {
-  id: string;
-  name: string;
-  moviesId: string;
-}
 
 
-interface CardProps {
-  movie: Partial<Movie>; // Usamos Partial para permitir que las propiedades sean opcionales
-}
-
-
-export const Card: React.FC<CardProps> = ({ movie }) => {
+export const Card: React.FC<MovieCar> = ({ title,year, language,description,image, id }) => {
   const [isOpenModalDelete, openModalDelte, closeModalDelete] = useModal(false)
   const [isOpenModalEdit, openModalEdit, closeModalEdit] = useModal(false)
+  
 
   return (
 
     <>
     <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
-        <MoviesFormEdit movieId={movie.id ?? ''}/>
+        <MoviesFormEdit movieId={id ?? ''}/>
       </Modal>
     <Modal isOpen={isOpenModalDelete} closeModal={closeModalDelete}>
-        <ModalConfirmation movieId={movie.id ?? ''} onClose={closeModalDelete}/>
+        <ModalConfirmation movieId={id ?? ''} onClose={closeModalDelete}/>
       </Modal>
+  
 
       <div className={css.card}>
-        <img className={css.card_img} src={movie.image} alt="card img" />
+        <img className={css.card_img}  src={image?.secure_url} alt="card img" />
         <div className={css.descriptions}>
-          <h2>{movie.title}</h2>
-          <p className={css.description_parrafo}>{movie.description}</p>
-          <p className={css.description_parrafo_date}>Year: <span className={css.description_span_date}>{movie.year}</span></p>
-          <p className={css.description_parrafo_date}>Language:  <span className={css.description_span_date}>{movie.language}</span></p>
+          <h2>{title}</h2>
+          <p className={css.description_parrafo}>{description}</p>
+          <p className={css.description_parrafo_date}>Language:  <span className={css.description_span_date}>{language}</span></p>
+          <p className={css.description_parrafo_date}>Year: <span className={css.description_span_date}>{year}</span></p>
           <div className={css.button_divCard}>
             <ButtonComponent onClick={openModalEdit} button_hover="button_hover_green" backgroundColor="greenBackground"
               textSize="largeText" className={css.buttonClasses}>

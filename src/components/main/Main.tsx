@@ -8,17 +8,15 @@ import { useUserContext } from '../../context/userContext';
 
 export const Main = () => {
 	const { user, getAccessTokenSilently } = useAuth0();
-	const { userData,allMovies, movies,movieUpdate,moviesDelete, fetchUserMoviesByGenres } = useUserContext();
+	const { userData,allMovies,movieUpdate,moviesDelete, fetchUserMoviesByGenres } = useUserContext();
 	const { horror, action, comedy } = allMovies?.allMovies || {};
 
 	useEffect(() => {
 	  if (userData && user) {
 		fetchUserMoviesByGenres(['horror', 'action', 'comedy'], getAccessTokenSilently, userData.id);
-
 	}
 
-	},[userData, movies,movieUpdate,moviesDelete]);
-
+	},[userData,movieUpdate,moviesDelete]);
 
 
 	return (
@@ -29,7 +27,8 @@ export const Main = () => {
 				<div className={css.boxContainer_1}>
 				{horror?.map((movie) => (
                         <div key={movie.id} className={css.box1}>
-                            <Card movie={movie} />
+                            <Card id={movie.id} title={movie.title} year={movie.year}
+							language={movie.language} description={movie.description} image={movie.image}/>
                         </div>
                     ))}
 				</div>
@@ -42,7 +41,8 @@ export const Main = () => {
 				<div className={css.boxContainer_2}>
 				{action?.map((movie) => (
                         <div key={movie.id} className={css.box2}>
-                            <Card movie={movie} />
+                           <Card id={movie.id} title={movie.title} year={movie.year}
+							language={movie.language} description={movie.description} image={movie.image}/>
                         </div>
                     ))}
 				</div>
@@ -55,7 +55,8 @@ export const Main = () => {
 				<div className={css.boxContainer_3}>
 				{comedy?.map((movie) => (
                         <div key={movie.id} className={css.box3}>
-                            <Card movie={movie} />
+                           <Card id={movie.id} title={movie.title} year={movie.year}
+							language={movie.language} description={movie.description} image={movie.image}/>
                         </div>
                     ))}
 				</div>

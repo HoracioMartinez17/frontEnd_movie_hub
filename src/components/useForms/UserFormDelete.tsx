@@ -2,22 +2,24 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useUserContext } from '../../context/userContext';
 import css from './userFormDelete.module.css'
 import { FC } from 'react';
-import { useNavigate } from "react-router-dom";
+
 interface ModalConfirmationProps {
     onClose: () => void;
 }
 
 export const UserFormDelete: FC<ModalConfirmationProps> = ({ onClose }) => {
-    const { userData, deleteUsersData } = useUserContext();
-    const { getAccessTokenSilently } = useAuth0();
-    const history = useNavigate();
+    const { userData, deleteUsersData, } = useUserContext();
+    const { getAccessTokenSilently, logout } = useAuth0();
+
 
     const handleDeleteUser = async () => {
         try {
             const response = await deleteUsersData(userData?.id ?? '', getAccessTokenSilently);
-            console.log(response)
+            //  await deleteUsersAuth0(user.sub.split("|").pop() ?? '');
+
             if (response.status === 204) {
-               return history("/");
+                onClose();
+                logout();
             }
         } catch (error) {
             console.error('Error delete user:', error);

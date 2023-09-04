@@ -5,12 +5,11 @@ import { useUserContext } from '../../context/userContext'
 
 const HomePage = () => {
   const { user, getAccessTokenSilently } = useAuth0();
-  const { userFechture } = useUserContext();
+  const { userFechture, movies } = useUserContext();
 
   useEffect(() => {
     userFechture(user, getAccessTokenSilently);
-  }, [user]);
-
+  }, [user, movies]);
 
   return (
     <>

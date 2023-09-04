@@ -1,4 +1,7 @@
 .spinner {
+    position: fixed;
+    top: 2rem;
+    left: 61rem;
     --gap: 5px;
     --clr: #d62d20;
     --height: 23px;

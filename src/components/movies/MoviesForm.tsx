@@ -1,7 +1,10 @@
-import css from './moviesForm.module.css'
+import css from './moviesForm.module.css';
 import { useUserContext } from '../../context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { Loader } from '../loaders/Loader';
+import { AlertMessageSuccess } from '../alertMessageSuccess/AlertMessageSuccess';
 
 interface MovieCreated {
     id?: string;
@@ -17,63 +20,105 @@ interface MovieCreated {
 export const MoviesForm = () => {
     const { userData, moviesSave } = useUserContext();
     const { getAccessTokenSilently } = useAuth0();
-    const form = useForm<MovieCreated>({
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const form = useForm({
         defaultValues: {
             title: 'Batman',
             year: 1900,
-            language: '',
             description: '',
-            genre: '',
+            language: '',
             image: '',
+            genre: '',
         },
-    })
-    const { register, handleSubmit, formState } = form
+    });
+
+    const { register, handleSubmit, formState } = form;
     const { errors } = formState;
 
-    const onSubmit = (newMovieData: MovieCreated) => {
-        console.log(newMovieData)
-
+    const onSubmit = async (newMovieData: MovieCreated) => {
         try {
-            moviesSave(newMovieData, getAccessTokenSilently, userData?.id ?? '');
+            setIsLoading(true);
+            const formData = new FormData();
+            formData.append('title', newMovieData.title);
+            formData.append('year', newMovieData.year.toString());
+            formData.append('language', newMovieData.language);
+            formData.append('description', newMovieData.description);
+            formData.append('genre', newMovieData.genre);
+            formData.append('image', newMovieData.image[0]);
+
+          const response = await  moviesSave(userData?.id ?? '', getAccessTokenSilently, formData);
+            // Realizar acciones después de que se complete la solicitud
+            if (response.status.toString() === 'success') {
+                setIsSuccess(true);
+                setTimeout(() => {
+                    setIsSuccess(false);
+                }, 4000)
+            }
         } catch (error) {
             console.error('Error saving movie:', error);
+        }  finally {
+            setIsLoading(false);
         }
     };
 
+
+
     return (
         <section className={css.container}>
+            {isLoading && <Loader />} {/* Muestra el componente de carga si isLoading es true */}
+                {isSuccess && <AlertMessageSuccess>
+                    Movie create successfully
+                </AlertMessageSuccess>} {/* Muestra el mensaje de éxito si isSuccess es true */}
             <header>ADD Movie</header>
-            <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={css.form} onSubmit={handleSubmit(onSubmit)} >
                 <div className={css.input_box}>
                     <label htmlFor='title'>Title</label>
-                    <input {...register("title", {
-                        required: {
-                            value: true,
-                            message: "Title is required"
-                        }
-                    })} placeholder="Enter full title" type="text" id='title' />
-                    {<span className={css.error_input}>{errors.title?.message}</span>}
+                    <input
+                        {...register('title', {
+                            required: 'Title is required',
+                        })}
+                        placeholder='Enter full title'
+                        type='text'
+                        id='title'
+                    />
+                    {errors.title && <span className={css.error_input}>{errors.title.message}</span>}
                 </div>
                 <div className={css.column}>
                     <div className={css.input_box}>
                         <label htmlFor='language'>Language</label>
-                        <input {...register("language", {
-                            required: {
-                                value: true,
-                                message: "Language is required"
-                            }
-                        })} placeholder="Enter movie language" type="text" id='language' />
-                        {<span className={css.error_input}>{errors.language?.message}</span>}
+                        <input
+                            {...register('language', {
+                                required: 'Language is required',
+                            })}
+                            placeholder='Enter movie language'
+                            type='text'
+                            id='language'
+                        />
+                        {errors.language && <span className={css.error_input}>{errors.language.message}</span>}
                     </div>
                     <div className={css.input_box}>
                         <label htmlFor='year'> Movie Year</label>
-                        <input {...register("year", {
-                            required: {
-                                value: true,
-                                message: "Year is required"
-                            }
-                        })} placeholder="Enter movie year" type="number" min="1900" max="2023" id='year' />
-                        {<span className={css.error_input}>{errors.year?.message}</span>}
+                        <input
+                            {...register('year', {
+                                required: 'Year is required',
+                                min: {
+                                    value: 1900,
+                                    message: 'Year must be at least 1900',
+                                },
+                                max: {
+                                    value: 2023,
+                                    message: 'Year must be at most 2023',
+                                },
+                            })}
+                            placeholder='Enter movie year'
+                            type='number'
+                            min='1900'
+                            max='2023'
+                            id='year'
+                        />
+                        {errors.year && <span className={css.error_input}>{errors.year.message}</span>}
                     </div>
                 </div>
                 <div className={css.gender_box}>
@@ -94,27 +139,32 @@ export const MoviesForm = () => {
                     </div>
                     {errors.genre && <span className={css.error_input}>Genre is required</span>}
                 </div>
-
                 <div className={`${css.input_box} ${css.description}`} >
                     <label htmlFor='description'>Description</label>
-                    <input {...register("description", {
-                        required: {
-                            value: true,
-                            message: "Please enter a description"
-                        }
-                    })} placeholder="Enter movie description" type="text" id='description' />
-                    {<span className={css.error_input}>{errors.description?.message}</span>}
-                    <label className={css.label_file} htmlFor="image">Choose a file:</label>
-                    <input {...register("image", {
-                        required: {
-                            value: true,
-                            message: "Please choose a file"
-                        }
-                    })} className={css.inpdddut} id="image" type="text" />
-                    {<span className={css.error_input}>{errors.image?.message}</span>}
+                    <input
+                        {...register('description', {
+                            required: 'Please enter a description',
+                        })}
+                        placeholder='Enter movie description'
+                        type='text'
+                        id='description'
+                    />
+                    {errors.description && <span className={css.error_input}>{errors.description.message}</span>}
+                    <label className={css.label_file} htmlFor='image'>Choose a file:</label>
+                    <input className={css.inpdddut}
+                        id='image'
+                        type='file'
+                        accept='image/*'
+
+                        {...register('image', {
+                            required: 'Please choose a file',
+                        })}
+
+                    />
+                    {errors.image && <span className={css.error_input}>{errors.image.message}</span>}
                 </div>
-                <button type="submit">ADD Movie</button>
+                <button type='submit'>ADD Movie</button>
             </form>
         </section>
-    )
-}
+    );
+};

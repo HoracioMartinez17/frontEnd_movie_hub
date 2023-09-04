@@ -16,6 +16,7 @@ export const ModalConfirmation: React.FC<ModalConfirmationProps> = ({ onClose, m
     try {
 
       movieDelete(movieId, getAccessTokenSilently)
+      onClose()
 
     } catch (error) {
       console.error('Error delete movie:', error);
