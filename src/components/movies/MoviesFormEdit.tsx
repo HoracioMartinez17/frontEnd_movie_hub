@@ -26,7 +26,7 @@ export const MoviesFormEdit: React.FC<MoviesFormEditProps> = ({ movieId }) => {
     const { getAccessTokenSilently } = useAuth0();
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
-    // Encontrar la película específica en los datos del usuario
+
     const movieToEdit = userData?.movies.find(movie => movie.id === movieId);
 
     const form = useForm({
@@ -46,7 +46,6 @@ export const MoviesFormEdit: React.FC<MoviesFormEditProps> = ({ movieId }) => {
     const onSubmit = async (updateMovieData: MovieCreated) => {
         try {
             setIsLoading(true);
-            // Llama a la función para actualizar la película en la base de datos
             const formData = new FormData();
             formData.append('title', updateMovieData.title);
             formData.append('year', updateMovieData.year.toString());
@@ -72,10 +71,10 @@ export const MoviesFormEdit: React.FC<MoviesFormEditProps> = ({ movieId }) => {
 
     return (
         <>
-                {isLoading && <Loader />} {/* Muestra el componente de carga si isLoading es true */}
+                {isLoading && <Loader />}
                 {isSuccess && <AlertMessageSuccess>
                     Movie updated successfully
-                </AlertMessageSuccess>} {/* Muestra el mensaje de éxito si isSuccess es true */}
+                </AlertMessageSuccess>}
             <section className={css.container}>
                 <header>Edit Movie</header>
                 <form className={css.form} onSubmit={handleSubmit(onSubmit)}>

@@ -12,6 +12,7 @@ import { useState } from 'react'
 import { ButtonSpecial } from '../button/buttonSpecial/ButtonSpecial'
 import { UserForms } from '../useForms/UserForms'
 import { UserFormDelete } from '../useForms/UserFormDelete'
+import { useUserContext } from '../../context/userContext';
 
 
 
@@ -20,6 +21,7 @@ export const Header = () => {
   const [isOpenModal3, openModal3, closeModal3] = useModal(false)
   const [isOpenModal4, openModal4, closeModal4] = useModal(false)
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const { userData } = useUserContext();
   
 
 
@@ -43,7 +45,7 @@ export const Header = () => {
       </Modal>
       <header className={css.header}>
         <div className={`${css.menu} ${css.container}`}>
-          <Link className={css.logo} to='/' >Logo</Link>
+          <Link className={css.logo} to='/' >Cine Max</Link>
           <input type="checkbox" id={css.menu} />
           <label htmlFor={css.menu}>
             <img className={css.menu_icon} src={menu} alt="menu" />
@@ -74,7 +76,7 @@ export const Header = () => {
               >
                 <span className={css.navItem_span}><svg className={css.svg_profile} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                </svg>Profile</span>
+                </svg>{userData?.name}</span>
                 <ul className={`${css.ul_second} ${isDropdownVisible ? css.visible : ''}`}>
                   {isDropdownVisible && <DropdownMenu isDropdownVisible={isDropdownVisible}
                    openModal3={openModal3}  openModal4={openModal4} />}

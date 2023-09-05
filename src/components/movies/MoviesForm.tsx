@@ -49,7 +49,7 @@ export const MoviesForm = () => {
             formData.append('image', newMovieData.image[0]);
 
           const response = await  moviesSave(userData?.id ?? '', getAccessTokenSilently, formData);
-            // Realizar acciones después de que se complete la solicitud
+
             if (response.status.toString() === 'success') {
                 setIsSuccess(true);
                 setTimeout(() => {
@@ -67,10 +67,10 @@ export const MoviesForm = () => {
 
     return (
         <section className={css.container}>
-            {isLoading && <Loader />} {/* Muestra el componente de carga si isLoading es true */}
+            {isLoading && <Loader />}
                 {isSuccess && <AlertMessageSuccess>
                     Movie create successfully
-                </AlertMessageSuccess>} {/* Muestra el mensaje de éxito si isSuccess es true */}
+                </AlertMessageSuccess>}
             <header>ADD Movie</header>
             <form className={css.form} onSubmit={handleSubmit(onSubmit)} >
                 <div className={css.input_box}>

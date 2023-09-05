@@ -15,7 +15,7 @@ export const UserFormDelete: FC<ModalConfirmationProps> = ({ onClose }) => {
     const handleDeleteUser = async () => {
         try {
             const response = await deleteUsersData(userData?.id ?? '', getAccessTokenSilently);
-            //  await deleteUsersAuth0(user.sub.split("|").pop() ?? '');
+           //  await deleteUsersAuth0(user.sub.split("|").pop() ?? '');
 
             if (response.status === 204) {
                 onClose();

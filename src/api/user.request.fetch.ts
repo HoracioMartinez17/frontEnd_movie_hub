@@ -35,15 +35,15 @@ export const deleteUserById = async (userId: string, getToken: () => Promise<str
     });
 
     if (!response.ok) {
-      // Manejar errores aquí
-      const errorData = await response.json(); // analizar la respuesta como JSON si es un error JSON
+
+      const errorData = await response.json();
       throw new Error(`Error deleting movie: ${errorData.message}`);
     }
 
     return response; // Devuelve la respuesta completa
   } catch (error) {
     console.error('Error deleting movie:', error);
-    throw error; // Lanza el error para que se maneje en el código que llama a esta función
+    throw error;
   }
 };
 
@@ -89,12 +89,12 @@ export const putUpdateUsers = async (userId: string, getToken: () => Promise<str
     });
 
     if (response.ok) {
-      // La actualización fue exitosa, puedes manejar la respuesta o devolverla si es necesario
+
       const data = await response.json();
       console.log(data);
       return data;
     } else {
-      // La actualización no fue exitosa, maneja el error (por ejemplo, muestra un mensaje de error)
+
       console.error('Error updating movie:', response.statusText);
     }
   } catch (error) {
@@ -119,12 +119,11 @@ export const postApiUser = async (user: {}, getToken: () => Promise<string>) => 
       body: JSON.stringify(user),
     });
     if (response.ok) {
-      // La actualización fue exitosa, puedes manejar la respuesta o devolverla si es necesario
+
       const data = await response.json();
       console.log(data);
       return data;
     } else {
-      // La actualización no fue exitosa, maneja el error (por ejemplo, muestra un mensaje de error)
       console.error('Error updating movie:', response.statusText);
     }
   } catch (error) {
@@ -184,11 +183,11 @@ export const savetMoviesUser = async (userId: string, getToken: () => Promise<st
       },
       body: formData
     });
-      // La actualización fue exitosa, puedes manejar la respuesta o devolverla si es necesario
+
       const data = await response.json();
       console.log(data);
       return data;
-   
+
   } catch (error) {
     console.error('Error updating movie:', error);
     throw error;
@@ -227,15 +226,15 @@ export const deleteMoviesUser = async (movieId: string, getToken: () => Promise<
     });
 
     if (!response.ok) {
-      // Manejar errores aquí
-      const errorData = await response.json(); // analizar la respuesta como JSON si es un error JSON
+
+      const errorData = await response.json();
       throw new Error(`Error deleting movie: ${errorData.message}`);
     }
 
     return response
   } catch (error) {
     console.error('Error posting movie:', error);
-    throw error; // Lanza el error para que se maneje en el código que llama a esta función
+    throw error;
 
   }
 }

@@ -76,9 +76,9 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const fetchUserMoviesByGenres = async (genres: string[], getAccessTokenSilently: () => Promise<string>, userId: string) => {
     try {
-      // Obtener todas las películas por géneros y actualizar el estado
+
       const moviesByGenre = await fetchAllMoviesByGenres(genres, getAccessTokenSilently, userId);
-      // ... Actualizar el estado de las películas en el contexto
+
       console.log(moviesByGenre)
       setAllMovies({ allMovies: moviesByGenre });
     } catch (error) {
@@ -88,10 +88,10 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const moviesSave = async (userId: string,getAccessTokenSilently: () => Promise<string>, newMovieData: FormData): Promise<Response> => {
     try {
-      //enviar la película creada del usuario a la base de datos
+
       const newMovieCreated = await savetMoviesUser(userId, getAccessTokenSilently, newMovieData);
-      // ... Actualizar el estado de las películas en el contexto
-  
+
+
       setNewMovies(newMovieCreated);
       return newMovieCreated;
     } catch (error) {
@@ -99,13 +99,12 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
       throw error;
     }
   }
-  
+
   const moviesUpdate = async (movieId: string, getAccessTokenSilently: () => Promise<string>, updateMovieData: FormData): Promise<Response> => {
     try {
-      //enviar la movie creada del user a la base de datos
+
       const newMovieUpdate = await updateMoviesUser(movieId, getAccessTokenSilently, updateMovieData);
 
-      // ... Actualizar el estado de las películas en el contexto
       setMovieUpdate(newMovieUpdate);
       return newMovieUpdate
     } catch (error) {
@@ -115,7 +114,6 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }
   const movieDelete = async (movieId: string, getAccessTokenSilently: () => Promise<string>) => {
     try {
-      // Eliminar la película del usuario en la base de datos
       const response = await deleteMoviesUser(movieId, getAccessTokenSilently);
         setMovieDelete(response);
     } catch (error) {
